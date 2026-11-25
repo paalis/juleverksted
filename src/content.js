@@ -22,6 +22,9 @@ export const kveld = {
 
 export const praktisk = {
   adresse: 'Huldervegen 65',
+  // Eventyraktig veibeskrivelse ut fra nabogatene. Vises under adressen.
+  veibeskrivelse:
+    'Dere finner oss der eventyrene bor. Hold dere på Eventyrvegen, vink til trollene i Trollsvingen, og ikke la Tyrihans prate dere i hjel. Smyg forbi Bukken Bruses veg før trollet under brua våkner. Askeladden viser dere opp til Huldervegen, der prinsessa bor et steinkast unna. Nummer 65 er huset der det lukter gløgg.',
   adresseNotat: 'Ring på, så åpner vi.',
   // Kartlenke og kalenderfil vises automatisk når adressen er fylt ut.
   // Om drikke. Vises øverst i «Praktisk».

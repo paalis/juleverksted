@@ -183,6 +183,7 @@ export default function InfoPage({ rsvps, forslag }) {
               <div className="ticket__stub">
                 <p className="ticket__label">Her er vi</p>
                 <p className="ticket__address">{praktisk.adresse}</p>
+                {praktisk.veibeskrivelse && <p className="ticket__tale">{praktisk.veibeskrivelse}</p>}
                 <p className="ticket__note">{praktisk.adresseNotat}</p>
                 <div className="ticket__actions">
                   {kart && (
