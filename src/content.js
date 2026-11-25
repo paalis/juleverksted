@@ -24,7 +24,7 @@ export const praktisk = {
   adresse: 'Huldervegen 65',
   // Eventyraktig veibeskrivelse ut fra nabogatene. Vises under adressen.
   veibeskrivelse:
-    'Dere finner oss der eventyrene bor. Hold dere på Eventyrvegen, vink til trollene i Trollsvingen, og ikke la Tyrihans prate dere i hjel. Smyg forbi Bukken Bruses veg før trollet under brua våkner. Askeladden viser dere opp til Huldervegen, der prinsessa bor et steinkast unna. Nummer 65 er huset der det lukter gløgg.',
+    'Det var en gang et juleverksted som lå så langt inne i eventyret at selv nissen måtte spørre om veien. På veien møter dere kjente fjes: Bukkene Bruse trasker forbi, Tyrihans har en morsom historie, og trollene i Trollsvingen er overraskende hyggelige i desember. Spør Askeladden, han finner alltid frem. Huldra holder til i Huldervegen 65, der det lyser i vinduene og gløggen står klar. Snipp, snapp, snute, så er dere ute (av bilen).',
   adresseNotat: 'Ring på, så åpner vi.',
   // Kartlenke og kalenderfil vises automatisk når adressen er fylt ut.
   // Om drikke. Vises øverst i «Praktisk».
