@@ -15,14 +15,13 @@ Forslaget kan slettes av den som foreslo det og av vertskapet.
 
 ## Endre innholdet
 
-Alt innhold ligger i **`src/content.js`**: dato og klokkeslett, velkomsttekst, adresse, parkering,
+Alt innhold ligger i **`src/content.js`**: dato og klokkeslett, velkomsttekst, adresse, drikke,
 program, aktiviteter, meny, parene, forslag til «ta med» og avstemmingene. Endre tekstene og
 deploy på nytt. Du trenger ikke røre noe annet.
 
 «Legg i kalenderen» lager en kalenderfil med påminnelse dagen før. «Åpne i kart» vises når adressen er fylt ut.
 
-Plassholdere som må fylles ut står i `[HAKEPARENTES]`:
-`[KLOKKESLETT]` (både `start` og `tidTekst`), `[ADRESSE]`, `[JA/NEI]` for barn og kjæledyr, og `[Fornavn]` for parene.
+Alle plassholdere er fylt ut. Nye plassholdere kan skrives i `[HAKEPARENTES]`.
 
 Merk: `id` på parene og avstemmingene brukes i databasen. Ikke endre dem etter at folk har svart.
 

@@ -144,9 +144,9 @@ export default function InfoPage({ rsvps, forslag }) {
               </div>
               <dl className="ticket__body facts">
                 <div className="fact">
-                  <Icon name="bil" />
-                  <dt>Parkering</dt>
-                  <dd>{praktisk.parkering}</dd>
+                  <Icon name="glass" />
+                  <dt>I glasset</dt>
+                  <dd>{praktisk.drikke}</dd>
                 </div>
                 <div className="fact">
                   <Icon name="veske" />
@@ -154,11 +154,6 @@ export default function InfoPage({ rsvps, forslag }) {
                   <dd>
                     <ul>{praktisk.taMed.map((t) => <li key={t}>{t}</li>)}</ul>
                   </dd>
-                </div>
-                <div className="fact">
-                  <Icon name="barn" />
-                  <dt>Barn</dt>
-                  <dd>{praktisk.barn}</dd>
                 </div>
                 <div className="fact">
                   <Icon name="pote" />
