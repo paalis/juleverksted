@@ -207,11 +207,6 @@ export default function InfoPage({ rsvps, forslag, heroKey, onShowLetter }) {
                   <dt>Ta med</dt>
                   <dd>{praktisk.taMed}</dd>
                 </div>
-                <div className="fact">
-                  <Icon name="pote" />
-                  <dt>Kjæledyr</dt>
-                  <dd>{praktisk.kjaeledyr}</dd>
-                </div>
               </dl>
             </div>
           </div>
