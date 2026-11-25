@@ -170,11 +170,11 @@ function Mat({ forslag }) {
   );
 }
 
-export default function InfoPage({ rsvps, forslag }) {
+export default function InfoPage({ rsvps, forslag, heroKey, onShowLetter }) {
   const kart = mapUrl(praktisk.adresse);
   return (
     <>
-      <Hero />
+      <Hero key={heroKey} />
       <main id="innhold">
         <section className="section" aria-labelledby="praktisk">
           <div className="wrap">
@@ -255,6 +255,11 @@ export default function InfoPage({ rsvps, forslag }) {
       <footer className="footer">
         <Ornament />
         Vi gleder oss til å se dere.
+        {onShowLetter && (
+          <p className="footer__letter">
+            <button type="button" className="link-btn link-btn--ink" onClick={onShowLetter}>Åpne brevet igjen</button>
+          </p>
+        )}
       </footer>
     </>
   );
