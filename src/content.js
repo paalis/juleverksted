@@ -98,16 +98,9 @@ export const taMedForslag = [
   'Småkaker til kaffen',
 ];
 
-// Andre avstemminger. Hvert par har én stemme per avstemming og kan endre den.
+// Avstemminger (valgfritt). Tom liste skjuler seksjonen. Hvert par har én stemme.
 // (Programmet stemmes over for seg, under «Programforslag».)
 export const avstemminger = [
-  {
-    id: 'musikk',
-    sporsmal: 'Hva skal stå på i bakgrunnen?',
-    valg: [
-      { id: 'norsk', tekst: 'Norske julesanger' },
-      { id: 'jazz', tekst: 'Rolig julejazz' },
-      { id: 'pop', tekst: 'Julepop for full guffe' },
-    ],
-  },
-];
+  // Eksempel:
+  // { id: 'musikk', sporsmal: 'Hva skal stå på?', valg: [{ id: 'norsk', tekst: 'Norske julesanger' }, { id: 'jazz', tekst: 'Julejazz' }] },
+]
