@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { par } from '../content.js';
 import { coupleName } from '../util.js';
-import { STATUS } from '../components/StatusBadge.jsx';
+import { STATUS, StatusBadge } from '../components/StatusBadge.jsx';
 import { Sparkle } from '../components/Icons.jsx';
 
 function RsvpCard({ couple, doc, isMe, onSave }) {
@@ -97,13 +97,32 @@ function RsvpCard({ couple, doc, isMe, onSave }) {
 export default function Rsvp({ docs, me, store }) {
   const byId = Object.fromEntries(docs.map((d) => [d.id, d]));
   const onSave = (id, data) => store.set('rsvp', id, data);
-  // Eget par øverst, så resten i fast rekkefølge.
-  const ordered = [...par].sort((a, b) => (b.id === me) - (a.id === me));
+  const mine = par.find((p) => p.id === me);
+  const others = par.filter((p) => p.id !== me);
   return (
-    <ul className="rsvp-list">
-      {ordered.map((p) => (
-        <RsvpCard key={p.id} couple={p} doc={byId[p.id]} isMe={p.id === me} onSave={onSave} />
-      ))}
-    </ul>
+    <div className="rsvp-wrap">
+      {mine && (
+        <ul className="rsvp-list">
+          <RsvpCard couple={mine} doc={byId[mine.id]} isMe onSave={onSave} />
+        </ul>
+      )}
+      <div className="card others">
+        <h3>De andre</h3>
+        <ul>
+          {others.map((p) => {
+            const d = byId[p.id];
+            return (
+              <li key={p.id} className="others__row">
+                <span className="others__names">
+                  {coupleName(p)}
+                  {d?.allergier && <span className="others__allergy">{d.allergier}</span>}
+                </span>
+                <StatusBadge status={d?.status} />
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </div>
   );
 }

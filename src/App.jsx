@@ -58,6 +58,7 @@ export default function App() {
 
   const lock = () => {
     storeCode(null);
+    setMe('');
     store?.close();
     setStore(null);
   };
