@@ -12,6 +12,18 @@ const base = {
 };
 
 const paths = {
+  // Lite hus med snø på taket, lys i vinduet og en gran ved siden av: «Jul i Huldervegen».
+  huldervegen: (
+    <>
+      <path d="M2.5 12.2 9 6.5l6.5 5.7" />
+      <path d="M4 11v9h10v-9" />
+      <path d="M3.6 10.4c1.6.9 2.6-.4 3.8.3 1.2.7 2.3-.5 3.4.2 1.2.7 2.2-.3 3.6.4" strokeWidth="1.2" />
+      <rect x="6.3" y="13.4" width="3.1" height="3.1" rx=".3" />
+      <path d="M11.2 20v-3.6h1.8V20" />
+      <path d="M19 4.5l2.4 4h-1.3l2 3.4h-1.4l1.8 3.3h-7l1.8-3.3h-1.4l2-3.4h-1.3z" />
+      <path d="M19 15.2V20M1.5 20h21" />
+    </>
+  ),
   stjerne: <path d="M12 3.5l2.3 5.6 6 .4-4.6 3.9 1.5 5.9L12 16.1l-5.2 3.2 1.5-5.9-4.6-3.9 6-.4z" />,
   gran: (
     <>

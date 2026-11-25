@@ -1051,3 +1051,12 @@ main { display: block; }
   .letter, .envelope__flap, .seal { transition: none; }
   .env-hint { animation: none; }
 }
+
+/* Merke øverst til venstre: Jul i Huldervegen */
+.topbar__brand { gap: .55rem; white-space: nowrap; }
+.topbar__icon { color: var(--gold-on-dark); flex-shrink: 0; }
+.topbar__icon rect { fill: rgb(246 212 138 / .85); stroke: var(--gold-on-dark); }
+@media (max-width: 26em) {
+  .topbar__brand { font-size: 1.08rem; gap: .4rem; }
+  .topbar nav a { padding-inline: .6rem; font-size: .9rem; }
+}

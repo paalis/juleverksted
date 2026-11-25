@@ -91,7 +91,7 @@ export default function App() {
       <header className="topbar on-dark">
         <div className="wrap wrap--wide topbar__inner">
           <a className="topbar__brand" href="/">
-            <Icon name="stjerne" size={18} /> <span>Juleverksted</span>
+            <Icon name="huldervegen" size={24} className="topbar__icon" /> <span>Jul i Huldervegen</span>
           </a>
           <nav aria-label="Hovedmeny">
             <a href="/" aria-current={plan ? undefined : 'page'}>Kvelden</a>
