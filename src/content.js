@@ -24,13 +24,13 @@ export const praktisk = {
   adresse: 'Huldervegen 65',
   adresseNotat: 'Ring på, så åpner vi.',
   // Kartlenke og kalenderfil vises automatisk når adressen er fylt ut.
-  parkering: 'Det er plass til to biler i oppkjørselen. Ellers er det gratis gateparkering rett nedi gata.',
+  // Om drikke. Vises øverst i «Praktisk».
+  drikke: 'Det blir gløgg og rødvin, og noe alkoholfritt til sjåførene. Erfaringen tilsier at kransene blir penere for hvert glass, i hvert fall i våre egne øyne.',
   taMed: [
     'Innesko eller tykke sokker',
     'Forkle hvis du har et du er glad i',
     'Det du har krysset av for under «Hvem tar med hva»',
   ],
-  barn: 'Denne kvelden er bare for oss voksne, så barna får en kos-kveld med barnevakt.',
   kjaeledyr: 'Vi har ingen kjæledyr, så allergikere kan puste lettet ut.',
 };
 
