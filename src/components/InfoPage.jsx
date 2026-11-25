@@ -1,9 +1,10 @@
 import { kveld, praktisk, programFast, programTyper, aktiviteter, meny, par } from '../content.js';
-import { coupleName, mapUrl, icsUrl, timeKey, plural } from '../util.js';
+import { coupleName, mapUrl, timeKey, plural } from '../util.js';
 import { Icon, Garland, Sparkle, Ornament } from './Icons.jsx';
 import Snow from './Snow.jsx';
 import Countdown from './Countdown.jsx';
 import { StatusBadge } from './StatusBadge.jsx';
+import { AdventCandles, CalendarLeaf, LukeDoor, Bow, GiftTag } from './Festive.jsx';
 
 function SectionHead({ id, title, children }) {
   return (
@@ -16,10 +17,9 @@ function SectionHead({ id, title, children }) {
 }
 
 const SPARKLES = [
-  { left: '8%', top: '30%', size: 12 },
-  { left: '88%', top: '22%', size: 16 },
-  { left: '80%', top: '62%', size: 10 },
-  { left: '15%', top: '70%', size: 9 },
+  { left: '6%', top: '34%', size: 12 },
+  { left: '90%', top: '24%', size: 15 },
+  { left: '84%', top: '74%', size: 9 },
 ];
 
 export function Hero() {
@@ -35,16 +35,17 @@ export function Hero() {
           <p className="invite__kicker">Velkommen til</p>
           <h1 id="tittel">{kveld.tittel}</h1>
         </div>
-        <p className="invite__when">
-          <span>{kveld.datoTekst}</span>
-          <span>{kveld.tidTekst}</span>
-        </p>
-        <Countdown />
+        <AdventCandles />
+        <div className="invite__dates">
+          <CalendarLeaf />
+          <LukeDoor><Countdown /></LukeDoor>
+        </div>
         <p className="invite__welcome">{kveld.velkomst}</p>
         <div className="invite__actions">
           <a className="btn btn--light" href="/planlegging">Svar på invitasjonen</a>
           <a className="btn btn--ghost" href="#program">Se kvelden</a>
         </div>
+        <Bow className="invite__bow" />
       </div>
     </section>
   );
@@ -118,14 +119,6 @@ function Program({ forslag }) {
 
 export default function InfoPage({ rsvps, forslag }) {
   const kart = mapUrl(praktisk.adresse);
-  const kalender = icsUrl({
-    tittel: kveld.tittel,
-    start: kveld.start,
-    adresse: praktisk.adresse,
-    beskrivelse: kveld.velkomst,
-    url: typeof window !== 'undefined' ? window.location.origin : '',
-  });
-
   return (
     <>
       <Hero />
@@ -133,50 +126,46 @@ export default function InfoPage({ rsvps, forslag }) {
         <section className="section" aria-labelledby="praktisk">
           <div className="wrap">
             <SectionHead id="praktisk" title="Praktisk" />
-            <dl className="facts card">
-              <div className="fact">
-                <Icon name="sted" />
-                <dt>Adresse</dt>
-                <dd>
-                  {praktisk.adresse}
-                  <br />
-                  {praktisk.adresseNotat}
-                </dd>
+            <div className="ticket">
+              <div className="ticket__stub">
+                <p className="ticket__label">Her er vi</p>
+                <p className="ticket__address">{praktisk.adresse}</p>
+                <p className="ticket__note">{praktisk.adresseNotat}</p>
+                <div className="ticket__actions">
+                  {kart && (
+                    <a className="btn btn--small" href={kart} target="_blank" rel="noreferrer">
+                      <Icon name="sted" size={18} /> Åpne i kart
+                    </a>
+                  )}
+                  <a className="btn btn--quiet btn--small" href="/juleverksted.ics" download="juleverksted.ics">
+                    <Icon name="kalender" size={18} /> Legg i kalender
+                  </a>
+                </div>
               </div>
-              <div className="fact">
-                <Icon name="bil" />
-                <dt>Parkering</dt>
-                <dd>{praktisk.parkering}</dd>
-              </div>
-              <div className="fact">
-                <Icon name="veske" />
-                <dt>Ta med</dt>
-                <dd>
-                  <ul>{praktisk.taMed.map((t) => <li key={t}>{t}</li>)}</ul>
-                </dd>
-              </div>
-              <div className="fact">
-                <Icon name="barn" />
-                <dt>Barn</dt>
-                <dd>{praktisk.barn}</dd>
-              </div>
-              <div className="fact">
-                <Icon name="pote" />
-                <dt>Kjæledyr</dt>
-                <dd>{praktisk.kjaeledyr}</dd>
-              </div>
-            </dl>
-            <div className="fact-actions">
-              {kalender && (
-                <a className="btn btn--quiet btn--small" href={kalender} download="juleverksted.ics">
-                  <Icon name="kalender" size={18} /> Legg i kalenderen
-                </a>
-              )}
-              {kart && (
-                <a className="btn btn--quiet btn--small" href={kart} target="_blank" rel="noreferrer">
-                  <Icon name="sted" size={18} /> Åpne i kart
-                </a>
-              )}
+              <dl className="ticket__body facts">
+                <div className="fact">
+                  <Icon name="bil" />
+                  <dt>Parkering</dt>
+                  <dd>{praktisk.parkering}</dd>
+                </div>
+                <div className="fact">
+                  <Icon name="veske" />
+                  <dt>Ta med</dt>
+                  <dd>
+                    <ul>{praktisk.taMed.map((t) => <li key={t}>{t}</li>)}</ul>
+                  </dd>
+                </div>
+                <div className="fact">
+                  <Icon name="barn" />
+                  <dt>Barn</dt>
+                  <dd>{praktisk.barn}</dd>
+                </div>
+                <div className="fact">
+                  <Icon name="pote" />
+                  <dt>Kjæledyr</dt>
+                  <dd>{praktisk.kjaeledyr}</dd>
+                </div>
+              </dl>
             </div>
           </div>
         </section>
@@ -190,7 +179,8 @@ export default function InfoPage({ rsvps, forslag }) {
             </SectionHead>
             <ul className="activities">
               {aktiviteter.map((a) => (
-                <li key={a.tittel} className="card activity">
+                <li key={a.tittel} className="recipe">
+                  <span className="recipe__tape" aria-hidden="true" />
                   <span className="activity__icon"><Icon name={a.ikon} size={28} /></span>
                   <h3>{a.tittel}</h3>
                   <p>{a.tekst}</p>
@@ -228,15 +218,11 @@ export default function InfoPage({ rsvps, forslag }) {
         <section className="section" aria-labelledby="gjester">
           <div className="wrap">
             <SectionHead id="gjester" title="Hvem kommer" />
-            <ul className="guests">
-              {par.map((p) => (
-                <li key={p.id} className="guest">
-                  <span className="guest__names">
-                    {coupleName(p)}
-                    {p.vert && <span className="guest__host">Vertskap</span>}
-                  </span>
-                  {rsvps && <StatusBadge status={rsvps[p.id]?.status} />}
-                </li>
+            <ul className="tags">
+              {par.map((p, i) => (
+                <GiftTag key={p.id} i={i} host={p.vert} badge={rsvps && <StatusBadge status={rsvps[p.id]?.status} />}>
+                  {coupleName(p)}
+                </GiftTag>
               ))}
             </ul>
           </div>
