@@ -177,13 +177,25 @@ export default function InfoPage({ rsvps, forslag, heroKey, onShowLetter }) {
       <Hero key={heroKey} />
       <main id="innhold">
         <section className="section" aria-labelledby="praktisk">
-          <div className="wrap">
+          <div className="wrap wrap--ticket">
             <SectionHead id="praktisk" title="Praktisk" />
             <div className="ticket">
               <div className="ticket__stub">
                 <p className="ticket__label">Her er vi</p>
                 <p className="ticket__address">{praktisk.adresse}</p>
-                {praktisk.veibeskrivelse && <p className="ticket__tale">{praktisk.veibeskrivelse}</p>}
+                {praktisk.veibeskrivelse && (
+                  <div className="tale">
+                    <div className="tale__side tale__side--l" aria-hidden="true">
+                      <Icon name="troll" size={38} />
+                      <Icon name="bro" size={38} />
+                    </div>
+                    <p className="ticket__tale">{praktisk.veibeskrivelse}</p>
+                    <div className="tale__side tale__side--r" aria-hidden="true">
+                      <Icon name="bukk" size={38} />
+                      <Icon name="krone" size={38} />
+                    </div>
+                  </div>
+                )}
                 <p className="ticket__note">{praktisk.adresseNotat}</p>
                 <div className="ticket__actions">
                   {kart && (
