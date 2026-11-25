@@ -3,6 +3,7 @@
 //
 //   store.subscribe(samling, cb)   cb får [{ id, ...data }] ved hver endring
 //   store.set(samling, id, data)
+//   store.merge(samling, id, delvisData)
 //   store.setField(samling, id, felt, underfelt, verdi)   verdi null = slett feltet
 //   store.remove(samling, id)
 import { firebaseConfig } from '../firebase-config.js';

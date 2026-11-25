@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useLive } from './useLive.js';
 import { newId } from '../util.js';
 import { Icon } from '../components/Icons.jsx';
 
 export default function Todos({ docs, store }) {
   const [text, setText] = useState('');
   const [error, setError] = useState('');
+  const live = useLive();
   const run = (p) => p.then(() => setError('')).catch((e) => setError(e.message));
 
   const items = [...docs].sort((a, b) => a.ferdig - b.ferdig || a.opprettet - b.opprettet);
@@ -27,7 +29,7 @@ export default function Todos({ docs, store }) {
       {items.length === 0 ? (
         <p className="empty">Ingenting på lista ennå. Kjøp lys? Hente bord?</p>
       ) : (
-        <ul>
+        <ul className={live ? 'list--live' : undefined}>
           {items.map((t) => (
             <li key={t.id} className={`todo__item ${t.ferdig ? 'todo__item--done' : ''}`}>
               <span className="check">

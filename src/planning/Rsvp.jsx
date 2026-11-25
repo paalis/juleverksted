@@ -2,10 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import { par } from '../content.js';
 import { coupleName } from '../util.js';
 import { STATUS } from '../components/StatusBadge.jsx';
+import { Sparkle } from '../components/Icons.jsx';
 
 function RsvpCard({ couple, doc, isMe, onSave }) {
   const [allergier, setAllergier] = useState(doc?.allergier || '');
   const [note, setNote] = useState('');
+  const [burst, setBurst] = useState(0);
   const focused = useRef(false);
   const timer = useRef();
 
@@ -43,6 +45,12 @@ function RsvpCard({ couple, doc, isMe, onSave }) {
         <h3>{coupleName(couple)}</h3>
         {isMe && <span className="rsvp__you">Dere</span>}
       </div>
+      <div className="seg-wrap">
+      {burst > 0 && (
+        <span className="burst" key={burst} aria-hidden="true">
+          {Array.from({ length: 8 }, (_, i) => <Sparkle key={i} size={i % 2 ? 9 : 12} style={{ '--a': `${i * 45}deg` }} />)}
+        </span>
+      )}
       <fieldset className="seg">
         <legend className="visually-hidden">Svar fra {coupleName(couple)}</legend>
         <div className="seg__opts">
@@ -53,13 +61,17 @@ function RsvpCard({ couple, doc, isMe, onSave }) {
                 name={name}
                 value={value}
                 checked={doc?.status === value}
-                onChange={() => save({ status: value, allergier: allergier.slice(0, 500) })}
+                onChange={() => {
+                  if (value === 'kommer') setBurst((n) => n + 1);
+                  save({ status: value, allergier: allergier.slice(0, 500) });
+                }}
               />
               {text}
             </label>
           ))}
         </div>
       </fieldset>
+      </div>
       <div className="field">
         <label htmlFor={`${name}-allergi`}>Allergier og preferanser</label>
         <textarea

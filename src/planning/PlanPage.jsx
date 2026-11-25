@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { par } from '../content.js';
 import { coupleName } from '../util.js';
-import { Icon } from '../components/Icons.jsx';
+import { Icon, Ornament } from '../components/Icons.jsx';
 import { firebaseEnabled } from '../data/store.js';
 import Rsvp from './Rsvp.jsx';
 import Bring from './Bring.jsx';
 import Polls from './Polls.jsx';
 import Todos from './Todos.jsx';
+import Program from './Program.jsx';
 
 function Gate({ onUnlock }) {
   const [code, setCode] = useState('');
@@ -47,12 +48,12 @@ function Gate({ onUnlock }) {
   );
 }
 
-function Section({ id, icon, title, intro, children }) {
+function Section({ id, title, intro, children }) {
   return (
     <section className="section" aria-labelledby={id}>
       <div className="wrap">
         <header className="section__head">
-          <Icon name={icon} size={26} />
+          <Ornament />
           <h2 id={id}>{title}</h2>
           {intro && <p>{intro}</p>}
         </header>
@@ -86,6 +87,7 @@ export default function PlanPage({ unlocked, onUnlock, onLock, me, setMe, store,
               </div>
               <nav className="plan-nav" aria-label="Snarveier">
                 <a href="#svar">Påmelding</a>
+                <a href="#forslag">Programforslag</a>
                 <a href="#ta-med">Hvem tar med hva</a>
                 <a href="#stem">Avstemming</a>
                 <a href="#husk">Huskeliste</a>
@@ -106,10 +108,13 @@ export default function PlanPage({ unlocked, onUnlock, onLock, me, setMe, store,
           <Section id="svar" icon="kort" title="Påmelding" intro="Svar for dere selv. Allergier lagres når dere slutter å skrive.">
             <Rsvp docs={data.rsvp.docs} me={me} store={store} />
           </Section>
+          <Section id="forslag" title="Programforslag" intro="Foreslå det dere har lyst til, og stjernemerk de andres forslag. Det som får flest stjerner, setter vi inn i programmet.">
+            <Program docs={data.program.docs} me={me} store={store} />
+          </Section>
           <Section id="ta-med" icon="veske" title="Hvem tar med hva" intro="Kryss av for det dere tar med, eller legg til noe nytt.">
             <Bring docs={data.bringlist.docs} me={me} store={store} />
           </Section>
-          <Section id="stem" icon="stjerne" title="Avstemming">
+          <Section id="stem" icon="stjerne" title="Avstemming" intro="Noen små valg vi tar sammen.">
             <Polls docs={data.polls.docs} me={me} store={store} />
           </Section>
           <Section id="husk" icon="sjekk" title="Vertens huskeliste" intro="Små og store ting som må ordnes før fredag.">
