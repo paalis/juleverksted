@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import InfoPage from './components/InfoPage.jsx';
 import PlanPage from './planning/PlanPage.jsx';
+import Envelope, { envelopeSeen, markEnvelope } from './components/Envelope.jsx';
 import { Icon } from './components/Icons.jsx';
 import { createStore } from './data/store.js';
 import { checkCode, readStoredCode, storeCode, readStoredCouple, storeCouple } from './data/code.js';
@@ -26,6 +27,12 @@ export default function App() {
   const [plan, setPlan] = useState(isPlan);
   const [store, setStore] = useState(null);
   const [me, setMeState] = useState(readStoredCouple);
+  // Brevet vises første gang noen åpner forsiden (og når de ber om det igjen).
+  const [letter, setLetter] = useState(() => !isPlan() && !envelopeSeen());
+  const [heroKey, setHeroKey] = useState(0);
+  const leavingLetter = () => { window.scrollTo(0, 0); setHeroKey((k) => k + 1); };
+  const openedLetter = () => { markEnvelope(true); setLetter(false); };
+  const showLetter = () => { markEnvelope(false); window.scrollTo(0, 0); setLetter(true); };
 
   useEffect(() => {
     const onPop = () => {
@@ -78,6 +85,8 @@ export default function App() {
 
   return (
     <>
+      {letter && !plan && <Envelope onLeave={leavingLetter} onOpened={openedLetter} />}
+      <div className="page" inert={letter && !plan ? '' : undefined}>
       <a className="skip-link" href="#innhold">Hopp til innhold</a>
       <header className="topbar on-dark">
         <div className="wrap wrap--wide topbar__inner">
@@ -93,8 +102,9 @@ export default function App() {
       {plan ? (
         <PlanPage unlocked={Boolean(store)} onUnlock={unlock} onLock={lock} me={me} setMe={setMe} store={store} data={data} />
       ) : (
-        <InfoPage rsvps={rsvps} forslag={store ? data.program.docs : null} />
+        <InfoPage rsvps={rsvps} forslag={store ? data.program.docs : null} heroKey={heroKey} onShowLetter={showLetter} />
       )}
+      </div>
     </>
   );
 }
