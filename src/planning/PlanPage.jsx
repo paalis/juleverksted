@@ -108,7 +108,7 @@ export default function PlanPage({ unlocked, onUnlock, onLock, me, setMe, store,
           <Section id="svar" icon="kort" title="Påmelding" intro="Svar for dere selv. Allergier lagres når dere slutter å skrive.">
             <Rsvp docs={data.rsvp.docs} me={me} store={store} />
           </Section>
-          <Section id="forslag" title="Programforslag" intro="Foreslå det dere har lyst til, og stjernemerk de andres forslag. Det som får flest stjerner, setter vi inn i programmet.">
+          <Section id="forslag" title="Programforslag" intro="Aktiviteter, mat eller drikke: foreslå det dere har lyst til, og stjernemerk de andres forslag. Det som får flest stjerner, havner i programmet og på menyen.">
             <Program docs={data.program.docs} me={me} store={store} />
           </Section>
           <Section id="ta-med" icon="veske" title="Hvem tar med hva" intro="Kryss av for det dere tar med, eller legg til noe nytt.">

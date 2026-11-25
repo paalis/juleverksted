@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLive } from './useLive.js';
-import { aktiviteter, programTyper, par } from '../content.js';
+import { aktiviteter, meny, programTyper, par } from '../content.js';
 import { nameOf, newId, plural } from '../util.js';
 import { Icon, Sparkle } from '../components/Icons.jsx';
 
@@ -107,7 +107,11 @@ export default function Program({ docs, me, store }) {
       .catch((err) => setError(err.message));
   };
 
-  const ideas = aktiviteter.filter((a) => !existing.has(a.tittel.toLowerCase()));
+  // Hurtigvalg: verkstedidéer og mat-idéer som ikke er foreslått ennå.
+  const ideas = [
+    ...aktiviteter.map((a) => ({ tittel: a.tittel, tekst: a.tekst, ikon: a.ikon, type: 'verksted' })),
+    ...meny.ideer.map((m) => ({ tittel: m.navn, tekst: m.tekst, ikon: 'bestikk', type: 'mat' })),
+  ].filter((a) => !existing.has(a.tittel.toLowerCase()));
 
   return (
     <div className="ideas">
@@ -127,7 +131,7 @@ export default function Program({ docs, me, store }) {
           <div className="chips" aria-label="Hent en idé">
             {ideas.map((a) => (
               <button key={a.tittel} type="button" className="chip"
-                onClick={() => { setTittel(a.tittel); setTekst(a.tekst); setType('verksted'); }}>
+                onClick={() => { setTittel(a.tittel); setTekst(a.tekst); setType(a.type); }}>
                 <Icon name={a.ikon} size={16} /> {a.tittel}
               </button>
             ))}

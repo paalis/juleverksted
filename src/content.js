@@ -26,11 +26,7 @@ export const praktisk = {
   // Kartlenke og kalenderfil vises automatisk når adressen er fylt ut.
   // Om drikke. Vises øverst i «Praktisk».
   drikke: 'Det blir gløgg og rødvin, og noe alkoholfritt til sjåførene. Erfaringen tilsier at kransene blir penere for hvert glass, i hvert fall i våre egne øyne.',
-  taMed: [
-    'Innesko eller tykke sokker',
-    'Forkle hvis du har et du er glad i',
-    'Det du har krysset av for under «Hvem tar med hva»',
-  ],
+  taMed: 'Bare dere selv og godt humør. Har dere krysset av for noe under «Hvem tar med hva», så ta med det også.',
   kjaeledyr: 'Vi har ingen kjæledyr, så allergikere kan puste lettet ut.',
 };
 
@@ -56,31 +52,31 @@ export const aktiviteter = [
     ikon: 'krans',
     tittel: 'Adventskrans',
     tekst: 'En enkel krans av gran, mose og fire lys. Vi har halmringer og ståltråd til alle.',
-    taMed: 'Hageklipper eller en god saks, og gjerne kongler eller tørkede appelsiner.',
   },
   {
     ikon: 'hus',
     tittel: 'Pepperkakehus',
     tekst: 'Hvert par bygger ett hus. Vi stiller med ferdig stekte vegger og melisglasur.',
-    taMed: 'Godteri til pynt, og en flat plate eller et brett å bære huset hjem på.',
   },
   {
     ikon: 'kort',
     tittel: 'Julekort',
     tekst: 'For dem som vil ha en rolig stund: stempler, akvarell og fint papir.',
-    taMed: 'Adresselisten din, hvis du vil skrive ferdig kortene med en gang.',
   },
 ];
 
+// Maten er like uskrevet som programmet. Dette er bare idéer: gjestene foreslår og
+// stemmer under Planlegging (type «Mat og drikke»), og det som velges vises på forsiden.
 export const meny = {
-  ingress: 'Vi lager mat til alle. Skriv allergier og preferanser i påmeldingen, så tilpasser vi.',
-  retter: [
-    { navn: 'Gløgg og pepperkaker', tekst: 'Med og uten alkohol.' },
-    { navn: 'Ribbe eller nøttestek', tekst: 'Med surkål, rødkål, poteter og tyttebær.' },
+  ingress: 'Menyen er like uskrevet som programmet. Her er noen idéer å tygge på. Foreslå gjerne egne, og stem frem favorittene.',
+  ideer: [
+    { navn: 'Gløgg og pepperkaker', tekst: 'Klassikeren som får hendene i gang.' },
+    { navn: 'Ribbe eller nøttestek', tekst: 'Eller noe helt annet, hvis dere heller vil ha det.' },
+    { navn: 'Fingermat mens vi jobber', tekst: 'Noe man kan spise med glitter på fingrene.' },
     { navn: 'Riskrem', tekst: 'Med rød saus, og én mandel til den heldige.' },
-    { navn: 'Kaffe og sju slag', tekst: 'Bakt sammen med dere som har lyst.' },
+    { navn: 'Kaffe og sju slag', tekst: 'Eller tre slag og god samvittighet.' },
   ],
-  allergiNotat: 'Nøttestek og glutenfritt alternativ er med i planen. Si fra om alt annet.',
+  allergiNotat: 'Allergier og preferanser skriver dere i påmeldingen, så tar vi hensyn uansett hva vi ender opp med.',
 };
 
 // Gjestelisten (bare fornavn, siden er åpen for alle med lenken). «id» brukes i databasen. Ikke endre id etter at folk har svart.
@@ -105,15 +101,6 @@ export const taMedForslag = [
 // Andre avstemminger. Hvert par har én stemme per avstemming og kan endre den.
 // (Programmet stemmes over for seg, under «Programforslag».)
 export const avstemminger = [
-  {
-    id: 'dessert',
-    sporsmal: 'Hva vil dere ha til dessert?',
-    valg: [
-      { id: 'riskrem', tekst: 'Riskrem' },
-      { id: 'karamellpudding', tekst: 'Karamellpudding' },
-      { id: 'multekrem', tekst: 'Multekrem' },
-    ],
-  },
   {
     id: 'musikk',
     sporsmal: 'Hva skal stå på i bakgrunnen?',

@@ -55,7 +55,7 @@ export async function applyWorstCase() {
     [par[2].id]: { status: 'vet-ikke', allergier: 'Glutenfri', oppdatert: now },
   };
   const polls = {
-    dessert: { stemmer: { [par[0].id]: 'riskrem', [par[1].id]: 'riskrem', [par[2].id]: 'multekrem', [par[3].id]: 'riskrem' } },
+    musikk: { stemmer: { [par[0].id]: 'norsk', [par[1].id]: 'jazz' } },
   };
   const ids = par.map((p) => p.id);
   const program = {

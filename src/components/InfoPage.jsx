@@ -117,6 +117,59 @@ function Program({ forslag }) {
   );
 }
 
+function Mat({ forslag }) {
+  const mat = (forslag || []).filter((f) => f.type === 'mat');
+  const valgt = mat.filter((f) => f.valgt).sort((a, b) => timeKey(a.tid).localeCompare(timeKey(b.tid)));
+  const populære = mat.filter((f) => !f.valgt && votes(f) > 0).sort((a, b) => votes(b) - votes(a)).slice(0, 3);
+  const showIdeas = valgt.length === 0;
+
+  return (
+    <section className="section" aria-labelledby="mat">
+      <div className="wrap">
+        <SectionHead id="mat" title="Mat og drikke">{meny.ingress}</SectionHead>
+        <div className={`card menu ${showIdeas ? 'menu--draft' : ''}`}>
+          <p className="menu__stamp">{showIdeas ? 'Idéer, ikke bestemt' : 'På bordet så langt'}</p>
+          <ul>
+            {showIdeas
+              ? meny.ideer.map((r) => (
+                <li key={r.navn}>
+                  <h3>{r.navn}</h3>
+                  {r.tekst && <p>{r.tekst}</p>}
+                </li>
+              ))
+              : valgt.map((f) => (
+                <li key={f.id}>
+                  <h3>{f.tittel}</h3>
+                  {f.tekst && <p>{f.tekst}</p>}
+                </li>
+              ))}
+          </ul>
+          {populære.length > 0 && (
+            <div className="menu__votes">
+              <p>Flest stjerner blant forslagene:</p>
+              <ul>
+                {populære.map((f) => (
+                  <li key={f.id}>
+                    {f.tittel} <span><Icon name="stjerne" size={13} /> {votes(f)}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+        <div className="section__cta">
+          <a className="btn" href="/planlegging#forslag">
+            <Icon name="bestikk" size={18} /> Foreslå mat eller drikke
+          </a>
+        </div>
+        <p className="menu__note">
+          {meny.allergiNotat} <a href="/planlegging#svar">Gå til påmeldingen.</a>
+        </p>
+      </div>
+    </section>
+  );
+}
+
 export default function InfoPage({ rsvps, forslag }) {
   const kart = mapUrl(praktisk.adresse);
   return (
@@ -151,9 +204,7 @@ export default function InfoPage({ rsvps, forslag }) {
                 <div className="fact">
                   <Icon name="veske" />
                   <dt>Ta med</dt>
-                  <dd>
-                    <ul>{praktisk.taMed.map((t) => <li key={t}>{t}</li>)}</ul>
-                  </dd>
+                  <dd>{praktisk.taMed}</dd>
                 </div>
                 <div className="fact">
                   <Icon name="pote" />
@@ -179,36 +230,13 @@ export default function InfoPage({ rsvps, forslag }) {
                   <span className="activity__icon"><Icon name={a.ikon} size={28} /></span>
                   <h3>{a.tittel}</h3>
                   <p>{a.tekst}</p>
-                  {a.taMed && (
-                    <p className="activity__bring">
-                      <strong>Ta med</strong>
-                      {a.taMed}
-                    </p>
-                  )}
                 </li>
               ))}
             </ul>
           </div>
         </section>
 
-        <section className="section" aria-labelledby="mat">
-          <div className="wrap">
-            <SectionHead id="mat" title="Mat og drikke">{meny.ingress}</SectionHead>
-            <div className="card menu">
-              <ul>
-                {meny.retter.map((r) => (
-                  <li key={r.navn}>
-                    <h3>{r.navn}</h3>
-                    {r.tekst && <p>{r.tekst}</p>}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <p className="menu__note">
-              {meny.allergiNotat} <a href="/planlegging#svar">Skriv det i påmeldingen.</a>
-            </p>
-          </div>
-        </section>
+        <Mat forslag={forslag} />
 
         <section className="section" aria-labelledby="gjester">
           <div className="wrap">
