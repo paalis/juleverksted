@@ -13,15 +13,15 @@ export const tilgang = {
 export const kveld = {
   tittel: 'Juleverksted',
   // Dato og starttid styrer nedtellingen. Format: ÅÅÅÅ-MM-DDTTT:MM (norsk tid).
-  start: '2026-12-11T18:00', // [KLOKKESLETT] – bytt 18:00 til riktig tid
+  start: '2026-12-11T19:00',
   datoTekst: 'Fredag 11. desember',
-  tidTekst: 'kl. 18.00', // [KLOKKESLETT]
+  tidTekst: 'kl. 19.00',
   velkomst:
     'Vi rydder spisebordet, setter frem lim, bånd og pepperkakedeig, og håper dere vil tilbringe en kveld med oss. Ingen trenger å være flinke med hendene. Det holder å komme sulten og i godt humør.',
 };
 
 export const praktisk = {
-  adresse: '[ADRESSE]',
+  adresse: 'Huldervegen 65',
   adresseNotat: 'Ring på, så åpner vi.',
   // Kartlenke og kalenderfil vises automatisk når adressen er fylt ut.
   parkering: 'Det er plass til to biler i oppkjørselen. Ellers er det gratis gateparkering rett nedi gata.',
@@ -38,7 +38,7 @@ export const praktisk = {
 // Her står bare det som ligger fast. Forslag som krysses av som «med i programmet»
 // legges inn i tidslinjen automatisk, sortert etter klokkeslett.
 export const programFast = [
-  { tid: '18.00', tittel: 'Vi tar imot dere', tekst: 'Gløgg med og uten alkohol, mandler og rosiner.' }, // [KLOKKESLETT]
+  { tid: '19.00', tittel: 'Vi tar imot dere', tekst: 'Gløgg med og uten alkohol, mandler og rosiner.' },
 ];
 
 // Typer programforslag (brukes i skjemaet og som merkelapp).
@@ -83,12 +83,12 @@ export const meny = {
   allergiNotat: 'Nøttestek og glutenfritt alternativ er med i planen. Si fra om alt annet.',
 };
 
-// Gjestelisten. «id» brukes i databasen. Ikke endre id etter at folk har svart.
+// Gjestelisten (bare fornavn, siden er åpen for alle med lenken). «id» brukes i databasen. Ikke endre id etter at folk har svart.
 export const par = [
-  { id: 'vert', navn: ['[Fornavn]', '[Fornavn]'], vert: true },
-  { id: 'par-2', navn: ['[Fornavn]', '[Fornavn]'] },
-  { id: 'par-3', navn: ['[Fornavn]', '[Fornavn]'] },
-  { id: 'par-4', navn: ['[Fornavn]', '[Fornavn]'] },
+  { id: 'vert', navn: ['Pål André', 'Ingrid'], vert: true },
+  { id: 'par-2', navn: ['Sander', 'Kristina'] },
+  { id: 'par-3', navn: ['Bjørn-Terje', 'Camilla'] },
+  { id: 'par-4', navn: ['Eivind', 'Eirill'] },
 ];
 
 // Forslag i «Hvem tar med hva». Gjestene kan legge til flere selv.
