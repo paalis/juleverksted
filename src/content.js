@@ -43,7 +43,7 @@ export const programFast = [
 export const programTyper = [
   { id: 'verksted', tekst: 'Verksted' },
   { id: 'mat', tekst: 'Mat og drikke' },
-  { id: 'kos', tekst: 'Kos og lek' },
+  { id: 'kos', tekst: 'Aktivitet/lek' },
   { id: 'annet', tekst: 'Annet' },
 ];
 
