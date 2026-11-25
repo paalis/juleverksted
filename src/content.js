@@ -17,7 +17,7 @@ export const kveld = {
   datoTekst: 'Fredag 11. desember',
   tidTekst: 'kl. 19.00',
   velkomst:
-    'Vi rydder spisebordet, setter frem lim, bånd og pepperkakedeig, og håper dere vil tilbringe en kveld med oss. Ingen trenger å være flinke med hendene. Det holder å komme sulten og i godt humør.',
+    'Nissen har meldt fra om akutt mangel på verkstedhjelpere, og vi har sagt ja på vegne av dere alle. Ingen fagbrev kreves, og forkle er frivillig. Det eneste vi kan love, er glitter på steder dere ikke visste fantes.',
 };
 
 export const praktisk = {
