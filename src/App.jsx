@@ -81,7 +81,7 @@ export default function App() {
   };
   const rsvps = store ? Object.fromEntries(data.rsvp.docs.map((d) => [d.id, d])) : null;
 
-  useEffect(() => { document.title = plan ? 'Planlegging – Juleverksted' : 'Juleverksted'; }, [plan]);
+  useEffect(() => { document.title = plan ? 'Planlegging – Jul i Huldervegen' : 'Jul i Huldervegen'; }, [plan]);
 
   return (
     <>
