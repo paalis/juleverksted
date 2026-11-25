@@ -30,8 +30,8 @@ export const praktisk = {
     'Forkle hvis du har et du er glad i',
     'Det du har krysset av for under «Hvem tar med hva»',
   ],
-  barn: '[JA/NEI] – f.eks. «Denne kvelden er bare for voksne. Barnevakt anbefales!»',
-  kjaeledyr: '[JA/NEI] – f.eks. «Katten vår er hjemme, si fra hvis du er allergisk.»',
+  barn: 'Denne kvelden er bare for oss voksne, så barna får en kos-kveld med barnevakt.',
+  kjaeledyr: 'Vi har ingen kjæledyr, så allergikere kan puste lettet ut.',
 };
 
 // Programmet er ikke spikret: gjestene foreslår og stemmer under Planlegging.
