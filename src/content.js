@@ -6,8 +6,8 @@
 export const tilgang = {
   // SHA-256 av tilgangskoden (ikke selve koden). Lag en ny med:
   //   npm run hash-kode -- NYKODE
-  // Nåværende kode: PEPPERKAKE11
-  kodeHash: '655ebe99ecc561a8f235d5b59a4f38fe1cca7aecafd8d480e755840b14ed4e4a',
+  // Nåværende kode: PREJULESANG
+  kodeHash: '3c57eb0f20fee34500977a316319af79b511749092c35a6f090a0ff04fae4ce8',
 };
 
 export const kveld = {
