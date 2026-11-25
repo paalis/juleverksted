@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 
-// Veldig diskret snø: 14 partikler, langsomme, kun transform. Skjules helt ved
+// Diskret snø: 22 partikler, langsomme, kun transform. Skjules helt ved
 // prefers-reduced-motion (se .snow i styles.css). Dekorativ, derfor aria-hidden.
-export default function Snow({ count = 14 }) {
+export default function Snow({ count = 22 }) {
   const flakes = useMemo(() => {
     // Fast «tilfeldighet» slik at mønsteret er likt ved hver last.
     let seed = 11;

@@ -57,6 +57,24 @@ service cloud.firestore {
         && data().stemmer.size() <= 12;
     }
 
+    // Programforslag: gjestene foreslår, stemmer (stemmer = { parId: true }) og velger
+    match /spaces/{space}/program/{forslagId} {
+      allow get, list: if validSpace(space);
+      allow delete: if validSpace(space) && validId(forslagId);
+      allow create, update: if validSpace(space) && validId(forslagId)
+        && data().keys().hasOnly(['tittel', 'tekst', 'type', 'foreslattAv', 'stemmer', 'valgt', 'tid', 'opprettet'])
+        && str(data().tittel, 1, 80)
+        && str(data().tekst, 0, 300)
+        && data().type in ['verksted', 'mat', 'kos', 'annet']
+        && str(data().foreslattAv, 0, 64)
+        && data().stemmer is map
+        && data().stemmer.size() <= 12
+        && data().valgt is bool
+        && data().tid is string
+        && (data().tid == '' || data().tid.matches('^([01][0-9]|2[0-3])[.:][0-5][0-9]$'))
+        && data().opprettet is int;
+    }
+
     // Vertens huskeliste
     match /spaces/{space}/todos/{todoId} {
       allow get, list: if validSpace(space);

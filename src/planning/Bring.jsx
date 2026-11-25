@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLive } from './useLive.js';
 import { taMedForslag } from '../content.js';
 import { nameOf, newId, slug, plural } from '../util.js';
 import { Icon } from '../components/Icons.jsx';
@@ -6,6 +7,7 @@ import { Icon } from '../components/Icons.jsx';
 export default function Bring({ docs, me, store }) {
   const [text, setText] = useState('');
   const [error, setError] = useState('');
+  const live = useLive();
 
   // Forslagene fra content.js finnes ikke i databasen før noen krysser av.
   const byId = Object.fromEntries(docs.map((d) => [d.id, d]));
@@ -43,7 +45,7 @@ export default function Bring({ docs, me, store }) {
       {items.length === 0 ? (
         <p className="empty">Lista er tom. Legg til det første under.</p>
       ) : (
-        <ul>
+        <ul className={live ? 'list--live' : undefined}>
           {items.map((item) => {
             const mine = item.tarMed && item.tarMed === me;
             const other = item.tarMed && !mine;

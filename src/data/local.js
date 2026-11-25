@@ -38,6 +38,10 @@ export function createLocalStore(space) {
       db[col] = { ...(db[col] || {}), [id]: data };
       write(col);
     },
+    async merge(col, id, patch) {
+      db[col] = { ...(db[col] || {}), [id]: { ...((db[col] || {})[id] || {}), ...patch } };
+      write(col);
+    },
     async setField(col, id, field, sub, value) {
       const docs = (db[col] = { ...(db[col] || {}) });
       const doc = { ...(docs[id] || {}) };

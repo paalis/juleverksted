@@ -23,6 +23,7 @@ export const kveld = {
 export const praktisk = {
   adresse: '[ADRESSE]',
   adresseNotat: 'Ring på, så åpner vi.',
+  // Kartlenke og kalenderfil vises automatisk når adressen er fylt ut.
   parkering: 'Det er plass til to biler i oppkjørselen. Ellers er det gratis gateparkering rett nedi gata.',
   taMed: [
     'Innesko eller tykke sokker',
@@ -33,16 +34,23 @@ export const praktisk = {
   kjaeledyr: '[JA/NEI] – f.eks. «Katten vår er hjemme, si fra hvis du er allergisk.»',
 };
 
-// Programmet vises som en tidslinje i denne rekkefølgen.
-export const program = [
-  { tid: '18.00', tittel: 'Ankomst og velkomstdrikk', tekst: 'Gløgg med og uten alkohol, mandler og rosiner.' },
-  { tid: '18.30', tittel: 'Verksted 1: Adventskrans', tekst: 'Vi binder kranser av gran og mose ved spisebordet.' },
-  { tid: '19.45', tittel: 'Middag', tekst: 'Vi tar en pause, setter oss ned og spiser sammen.' },
-  { tid: '21.00', tittel: 'Verksted 2: Pepperkakehus', tekst: 'Vi bygger og pynter. Det er lov å spise byggematerialene.' },
-  { tid: '22.30', tittel: 'Kaffe og kaker', tekst: 'Vi kårer kveldens fineste hus, uten at det blir høytidelig.' },
+// Programmet er ikke spikret: gjestene foreslår og stemmer under Planlegging.
+// Her står bare det som ligger fast. Forslag som krysses av som «med i programmet»
+// legges inn i tidslinjen automatisk, sortert etter klokkeslett.
+export const programFast = [
+  { tid: '18.00', tittel: 'Vi tar imot dere', tekst: 'Gløgg med og uten alkohol, mandler og rosiner.' }, // [KLOKKESLETT]
 ];
 
-// Aktivitetskort. «ikon» kan være: krans, hus, kort, stjerne, gran.
+// Typer programforslag (brukes i skjemaet og som merkelapp).
+export const programTyper = [
+  { id: 'verksted', tekst: 'Verksted' },
+  { id: 'mat', tekst: 'Mat og drikke' },
+  { id: 'kos', tekst: 'Kos og lek' },
+  { id: 'annet', tekst: 'Annet' },
+];
+
+// Idéer til verksteder. Vises som inspirasjon, og kan foreslås til programmet med ett trykk.
+// «ikon» kan være: krans, hus, kort, stjerne, gran.
 export const aktiviteter = [
   {
     ikon: 'krans',
@@ -94,18 +102,9 @@ export const taMedForslag = [
   'Småkaker til kaffen',
 ];
 
-// Avstemminger. Hvert par har én stemme per avstemming og kan endre den.
+// Andre avstemminger. Hvert par har én stemme per avstemming og kan endre den.
+// (Programmet stemmes over for seg, under «Programforslag».)
 export const avstemminger = [
-  {
-    id: 'verksted-3',
-    sporsmal: 'Rekker vi et tredje verksted?',
-    valg: [
-      { id: 'julekort', tekst: 'Julekort' },
-      { id: 'servietter', tekst: 'Brettede servietter' },
-      { id: 'kranser', tekst: 'Dørkrans' },
-      { id: 'nei', tekst: 'Nei, vi prater heller' },
-    ],
-  },
   {
     id: 'dessert',
     sporsmal: 'Hva vil dere ha til dessert?',
@@ -113,6 +112,15 @@ export const avstemminger = [
       { id: 'riskrem', tekst: 'Riskrem' },
       { id: 'karamellpudding', tekst: 'Karamellpudding' },
       { id: 'multekrem', tekst: 'Multekrem' },
+    ],
+  },
+  {
+    id: 'musikk',
+    sporsmal: 'Hva skal stå på i bakgrunnen?',
+    valg: [
+      { id: 'norsk', tekst: 'Norske julesanger' },
+      { id: 'jazz', tekst: 'Rolig julejazz' },
+      { id: 'pop', tekst: 'Julepop for full guffe' },
     ],
   },
 ];

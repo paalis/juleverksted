@@ -55,11 +55,18 @@ export async function applyWorstCase() {
     [par[2].id]: { status: 'vet-ikke', allergier: 'Glutenfri', oppdatert: now },
   };
   const polls = {
-    'verksted-3': { stemmer: { [par[0].id]: 'julekort', [par[1].id]: 'julekort', [par[2].id]: 'nei', [par[3].id]: 'julekort' } },
+    dessert: { stemmer: { [par[0].id]: 'riskrem', [par[1].id]: 'riskrem', [par[2].id]: 'multekrem', [par[3].id]: 'riskrem' } },
+  };
+  const ids = par.map((p) => p.id);
+  const program = {
+    p1: { tittel: 'Adventskrans', tekst: 'Gran, mose og fire lys.', type: 'verksted', foreslattAv: ids[0], stemmer: { [ids[0]]: true, [ids[1]]: true, [ids[2]]: true }, valgt: true, tid: '18:30', opprettet: now },
+    p2: { tittel: 'Pepperkakehus-konkurranse med blindtest av glasur og hemmelig jury fra nabolaget', tekst: 'Vi deler oss i lag, og hvert lag får tretti minutter, én tube melis og ingen hjelp fra Google. Juryen kårer vinneren etter kaffen.', type: 'kos', foreslattAv: ids[2], stemmer: { [ids[0]]: true, [ids[2]]: true }, valgt: false, tid: '', opprettet: now + 1 },
+    p3: { tittel: 'Gløgg', tekst: '', type: 'mat', foreslattAv: ids[1], stemmer: {}, valgt: true, tid: '', opprettet: now + 2 },
+    p4: { tittel: 'Julekort', tekst: 'Stempler og akvarell.', type: 'verksted', foreslattAv: ids[3], stemmer: { [ids[3]]: true, [ids[1]]: true }, valgt: false, tid: '', opprettet: now + 3 },
   };
   const todos = {};
   ['Kjøpe stearinlys', 'Hente ekstra stoler hos naboen og huske å levere dem tilbake søndag', 'Bake pepperkakevegger (4 hus × 6 deler)', 'Strykeduk', 'Lage spilleliste', 'Kjøpe melis', 'Vaske gulv', 'Kjøle ned gløgg', 'Fyre i peisen', 'Rydde gang']
     .forEach((t, i) => { todos[`t${i}`] = { tekst: t, ferdig: i % 4 === 0, opprettet: now + i }; });
 
-  localStorage.setItem(key, JSON.stringify({ bringlist, rsvp, polls, todos }));
+  localStorage.setItem(key, JSON.stringify({ bringlist, rsvp, polls, todos, program }));
 }

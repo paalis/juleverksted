@@ -4,13 +4,22 @@ Info- og planleggingsside for juleverkstedet fredag 11. desember 2026.
 React + Vite, deployet på Vercel, delt data i Firebase Firestore (uten innlogging).
 
 - `/` – invitasjonen: nedtelling, praktisk info, program, aktiviteter, meny og gjesteliste.
-- `/planlegging` – bak tilgangskoden: påmelding, hvem tar med hva, avstemming og vertens huskeliste. Alle ser endringer med en gang.
+- `/planlegging` – bak tilgangskoden: påmelding, programforslag med stemmer, hvem tar med hva, avstemming og vertens huskeliste. Alle ser endringer med en gang.
+
+## Programmet
+
+Programmet er ikke spikret. Under **Programforslag** kan alle par foreslå noe, stjernemerke de andres forslag og
+slå på «Med i programmet» med et klokkeslett. Valgte forslag havner automatisk i tidslinjen under «Kvelden» på forsiden.
+Det som ligger fast (f.eks. når dere tar imot gjestene), står i `programFast` i `src/content.js`.
+Forslaget kan slettes av den som foreslo det og av vertskapet.
 
 ## Endre innholdet
 
 Alt innhold ligger i **`src/content.js`**: dato og klokkeslett, velkomsttekst, adresse, parkering,
 program, aktiviteter, meny, parene, forslag til «ta med» og avstemmingene. Endre tekstene og
 deploy på nytt. Du trenger ikke røre noe annet.
+
+«Legg i kalenderen» lager en kalenderfil med påminnelse dagen før. «Åpne i kart» vises når adressen er fylt ut.
 
 Plassholdere som må fylles ut står i `[HAKEPARENTES]`:
 `[KLOKKESLETT]` (både `start` og `tidTekst`), `[ADRESSE]`, `[JA/NEI]` for barn og kjæledyr, og `[Fornavn]` for parene.

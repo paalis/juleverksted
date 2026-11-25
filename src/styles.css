@@ -59,7 +59,7 @@ button, a, [role='button'], label { touch-action: manipulation; }
 button, [role='button'] { user-select: none; -webkit-user-select: none; }
 p { margin: 0 0 1em; }
 a { color: var(--berry); text-decoration-thickness: 1px; text-underline-offset: .18em; }
-.on-dark a { color: inherit; }
+.on-dark a:not(.btn) { color: inherit; }
 p:last-child { margin-bottom: 0; }
 h1, h2, h3 { font-family: var(--font-display); font-weight: 500; line-height: 1.1; margin: 0; text-wrap: balance; }
 ul, ol { margin: 0; padding: 0; list-style: none; }
@@ -486,3 +486,223 @@ main { display: block; }
 .check input:checked:disabled + span { background: #8b9a90; border-color: #8b9a90; color: #fbf8f1; }
 .field textarea { field-sizing: content; max-height: 14rem; }
 .seg__opts label { user-select: none; -webkit-user-select: none; }
+
+/* ═════════ Juleløft ═════════ */
+:root {
+  --bauble-red: #a8433a;
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --kofte: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='16' fill='none' stroke='%23cfb27a' stroke-width='1'%3E%3Cpath d='M14 2l6 6-6 6-6-6z'/%3E%3Cpath d='M14 6l2 2-2 2-2-2z' fill='%23cfb27a' stroke='none'/%3E%3Ccircle cx='1' cy='8' r='1' fill='%23cfb27a' stroke='none'/%3E%3Ccircle cx='27' cy='8' r='1' fill='%23cfb27a' stroke='none'/%3E%3C/svg%3E");
+}
+
+/* Ornament (strek – selburose – strek) over seksjonstitler */
+.ornament { display: flex; align-items: center; justify-content: center; gap: .75rem; color: var(--gold); margin: 0 auto 1rem; }
+.ornament svg { margin: 0; }
+.ornament__line { width: 3.25rem; height: 1px; background: currentColor; opacity: .55; }
+.on-dark .ornament { color: var(--gold-on-dark); }
+.footer .ornament { margin-bottom: .9rem; }
+
+/* Hero: kort med grankvist og julekuler */
+.invite { padding-top: clamp(1.25rem, 4vw, 2rem); }
+.invite__garland {
+  display: block; width: calc(100% + 2.75rem); max-width: 34rem;
+  margin: -2.1rem auto -.5rem; position: relative; left: 50%; transform: translateX(-50%);
+  color: #8fb39b;
+  overflow: visible;
+}
+.invite__title { position: relative; margin-top: .25rem; padding: .25rem 0; }
+.invite__kicker {
+  margin: 0 0 .1rem; font-family: var(--font-display); font-style: italic;
+  font-size: clamp(1.2rem, 4.6vw, 1.45rem); color: var(--gold-on-dark);
+}
+.invite h1 { font-size: clamp(3.6rem, 18vw, 7rem); text-shadow: 0 1px 0 rgb(0 0 0 / .15); }
+
+.bauble__thread { stroke: var(--gold-on-dark); opacity: .7; }
+.bauble__cap { stroke: var(--gold-on-dark); fill: var(--gold-on-dark); }
+.bauble--red .bauble__ball { fill: var(--bauble-red); stroke: var(--gold-on-dark); }
+.bauble--gold .bauble__ball { fill: rgb(207 178 122 / .28); stroke: var(--gold-on-dark); }
+.bauble--cream .bauble__ball { fill: rgb(251 245 232 / .1); stroke: #fbf5e8; }
+.bauble__shine { stroke: #fbf5e8; opacity: .65; }
+
+/* Sparkle rundt tittelen */
+.sparkle { position: absolute; color: var(--gold-on-dark); opacity: .55; pointer-events: none; }
+
+/* Adventsluke-nedtelling */
+.luke {
+  display: inline-flex; flex-direction: column; align-items: center;
+  margin: 1.5rem 0 0; padding: .55rem 1.4rem .6rem;
+  border: 1px solid rgb(207 178 122 / .6); border-radius: 4px;
+  outline: 1px solid rgb(207 178 122 / .25); outline-offset: 4px;
+  background: rgb(0 0 0 / .12);
+}
+.luke__tall { font-family: var(--font-display); font-size: 3rem; line-height: 1; color: #fbf5e8; font-variant-numeric: lining-nums tabular-nums; }
+.luke__enhet { font-size: .88rem; color: var(--gold-on-dark); letter-spacing: .02em; margin-top: .25rem; }
+.luke--text { font-family: var(--font-display); font-size: 1.4rem; color: var(--gold-on-dark); }
+
+/* Grønt bånd med koftemønster */
+.section--dark {
+  position: relative;
+  background-color: var(--spruce);
+  background-image: var(--grain), radial-gradient(90% 60% at 50% 0%, var(--spruce-soft), var(--spruce) 70%);
+  background-size: 160px, cover;
+  color: var(--cream-on-dark);
+}
+.section + .section--dark, .section--dark + .section { border-top: 0; }
+.section--dark::before, .section--dark::after {
+  content: ''; position: absolute; left: 0; right: 0; height: 16px;
+  background: var(--kofte) center / 28px 16px repeat-x; opacity: .6;
+}
+.section--dark::before { top: 1.1rem; }
+.section--dark::after { bottom: 1.1rem; }
+.section--dark .section__head h2 { color: #fbf5e8; }
+.section--dark .section__head p { color: rgb(241 233 216 / .85); }
+.section--dark .timeline time { color: var(--gold-on-dark); }
+.section--dark .timeline p { color: rgb(241 233 216 / .8); }
+.section--dark .timeline__body::before { background: var(--spruce); border-color: var(--gold-on-dark); }
+.section--dark .timeline li:not(:last-child) .timeline__body::after { background: rgb(207 178 122 / .35); }
+.timeline__open h3 { font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 1.35rem; }
+.timeline__open time { opacity: .7; }
+.section__cta { display: flex; justify-content: center; margin-top: 2.5rem; }
+
+.popular { margin-top: 2.5rem; padding: 1.25rem 1.25rem .5rem; border: 1px solid rgb(207 178 122 / .35); border-radius: var(--radius); background: rgb(0 0 0 / .1); }
+.popular h3 { font-size: 1.35rem; margin-bottom: .5rem; }
+.popular li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .1rem 1rem; padding: .7rem 0; border-top: 1px solid rgb(207 178 122 / .2); }
+.popular__title { overflow-wrap: anywhere; }
+.popular__meta { grid-row: 2; font-size: .85rem; color: rgb(241 233 216 / .7); }
+.popular__votes { grid-row: 1 / span 2; grid-column: 2; align-self: center; display: inline-flex; gap: .3rem; align-items: center; color: var(--gold-on-dark); font-variant-numeric: tabular-nums; }
+
+.fact-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; margin-top: 1.25rem; }
+.activity__icon { display: inline-grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--berry-soft); color: var(--berry); }
+.activity__icon svg { color: inherit; }
+
+/* Programforslag */
+.ideas { display: grid; gap: 1rem; }
+.ideas__list { display: grid; gap: 1rem; }
+.idea { position: relative; display: grid; gap: .5rem; }
+.idea--chosen { border-color: rgb(29 58 44 / .45); box-shadow: inset 3px 0 0 var(--spruce); }
+.idea__top { display: flex; flex-wrap: wrap; gap: .4rem; padding-right: 2.5rem; }
+.idea__title { font-size: 1.55rem; overflow-wrap: anywhere; padding-right: 2rem; }
+.idea__text { color: var(--ink-2); overflow-wrap: anywhere; }
+.idea__by, .idea__voters { font-size: .88rem; color: var(--ink-2); overflow-wrap: anywhere; margin: 0; }
+.idea__actions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1.25rem; margin-top: .35rem; }
+.idea__delete { position: absolute; top: .6rem; right: .6rem; }
+.idea__time { max-width: 12rem; }
+.tag {
+  display: inline-flex; align-items: center; gap: .3rem; white-space: nowrap;
+  font-size: .8rem; padding: .15rem .6rem; border-radius: 999px;
+  background: var(--cream); color: var(--ink-2); border: 1px solid var(--line);
+}
+.tag--gold { background: #f6ecd6; color: #6e5321; border-color: #e2cf9f; }
+.tag--green { background: rgb(29 58 44 / .08); color: var(--spruce); border-color: rgb(29 58 44 / .25); }
+.tag svg { flex-shrink: 0; }
+
+.vote {
+  display: inline-flex; align-items: center; gap: .45rem; min-height: 44px; padding: .45rem .9rem .45rem .75rem;
+  border-radius: 999px; border: 1px solid var(--line-strong); background: #fffdf8; color: var(--ink); cursor: pointer;
+  transition: transform 140ms var(--ease-out), background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+.vote:active { transform: scale(0.97); }
+.vote:disabled { opacity: .55; cursor: not-allowed; }
+.vote svg path { transition: fill 160ms ease; }
+.vote[aria-pressed='true'] { background: var(--berry-soft); border-color: rgb(151 58 49 / .45); color: var(--berry); }
+.vote[aria-pressed='true'] svg path { fill: currentColor; }
+.vote__n { font-variant-numeric: tabular-nums; padding-left: .45rem; border-left: 1px solid currentColor; opacity: .8; }
+@media (hover: hover) and (pointer: fine) { .vote:not(:disabled):hover { border-color: var(--ink-2); } }
+
+.switch { display: inline-flex; align-items: center; gap: .6rem; min-height: 44px; cursor: pointer; font-size: .95rem; position: relative; }
+.switch input { position: absolute; opacity: 0; width: 44px; height: 26px; margin: 0; cursor: pointer; }
+.switch__track { flex-shrink: 0; width: 44px; height: 26px; border-radius: 999px; background: var(--line-strong); position: relative; transition: background-color 200ms ease; }
+.switch__thumb { position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fffdf8; box-shadow: 0 1px 2px rgb(0 0 0 / .2); transition: transform 200ms var(--ease-out); }
+.switch input:checked + .switch__track { background: var(--spruce); }
+.switch input:checked + .switch__track .switch__thumb { transform: translateX(18px); }
+.switch input:focus-visible + .switch__track { outline: 2px solid var(--focus); outline-offset: 2px; }
+.switch input:disabled + .switch__track { opacity: .5; }
+
+.idea-form { display: grid; gap: 1rem; }
+.idea-form h3 { font-size: 1.5rem; }
+.optional { font-weight: 400; color: var(--ink-2); }
+.type-pick { border: 0; padding: 0; margin: 0; min-width: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: .45rem; }
+.chip {
+  position: relative; display: inline-flex; align-items: center; gap: .4rem; min-height: 40px; padding: .35rem .85rem;
+  border-radius: 999px; border: 1px solid var(--line-strong); background: #fffdf8; font-size: .92rem; cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, transform 140ms var(--ease-out);
+}
+.chip:active { transform: scale(0.97); }
+.chip svg { color: var(--berry); }
+.chip--radio input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.chip--radio:has(input:checked) { background: var(--spruce); border-color: var(--spruce); color: var(--cream-on-dark); }
+.chip--radio:has(input:focus-visible) { outline: 2px solid var(--focus); outline-offset: 2px; }
+.field input[type='time'] {
+  width: 100%; min-height: 48px; padding: .6rem .9rem; border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong); background: #fffdf8;
+}
+
+/* ═════════ Bevegelse ═════════ */
+
+/* 1. Hero-inngang (én gang): kvisten tegnes, kulene henger seg på plass og svinger ut. */
+.garland__bough path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.4s var(--ease-out) .15s forwards; }
+.garland__bough path + path { animation-duration: .9s; animation-delay: .55s; }
+.bauble { opacity: 0; animation: hang-in .7s var(--ease-out) calc(.75s + var(--i) * 90ms) forwards; }
+.bauble__swing {
+  transform-box: fill-box; transform-origin: 50% 0;
+  animation:
+    settle 1.8s var(--ease-in-out) calc(.75s + var(--i) * 90ms) both,
+    sway calc(6s + var(--i) * .8s) ease-in-out calc(2.6s + var(--i) * 90ms) infinite;
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes hang-in { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes settle {
+  0% { transform: rotate(8deg); }
+  35% { transform: rotate(-4deg); }
+  60% { transform: rotate(2deg); }
+  82% { transform: rotate(-.8deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(1.6deg); }
+  75% { transform: rotate(-1.6deg); }
+}
+
+/* 2. Glimt rundt tittelen: rolig, forskjøvet. */
+.sparkle { animation: twinkle 3.6s ease-in-out calc(1.6s + var(--i) * .9s) infinite; }
+@keyframes twinkle {
+  0%, 100% { opacity: .2; transform: scale(.7); }
+  50% { opacity: .95; transform: scale(1); }
+}
+
+/* 3. Haken tegnes når noe krysses av (feedback). */
+.check .check-path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 180ms var(--ease-out); }
+.check input:checked + span .check-path { stroke-dashoffset: 0; }
+
+/* 4. Nye poster glir inn (bare etter første lasting, se useLive). */
+.list--live > li {
+  transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out);
+  @starting-style { opacity: 0; transform: translateY(6px); }
+}
+
+/* 5. Stjerne-burst når et par svarer «Kommer» (sjelden glede). */
+.seg-wrap { position: relative; }
+.burst { position: absolute; left: 16.66%; top: 50%; width: 0; height: 0; z-index: 2; pointer-events: none; }
+.burst svg {
+  position: absolute; left: -6px; top: -6px; color: var(--gold);
+  animation: burst 700ms var(--ease-out) forwards;
+}
+@keyframes burst {
+  0% { opacity: 1; transform: rotate(var(--a)) translateY(0) scale(.5); }
+  55% { opacity: 1; }
+  100% { opacity: 0; transform: rotate(var(--a)) translateY(-44px) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .garland__bough path { animation: none; stroke-dashoffset: 0; }
+  .bauble { animation: fade-in .4s ease both; }
+  .bauble__swing, .sparkle { animation: none; }
+  .sparkle { opacity: .6; }
+  .check .check-path { transition: none; }
+  .list--live > li { transition: opacity 200ms ease; @starting-style { opacity: 0; } }
+  .burst { display: none; }
+  .vote:active, .chip:active { transform: none; }
+  .switch__thumb { transition: none; }
+}
+@keyframes fade-in { from { opacity: 0; } }

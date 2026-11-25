@@ -69,6 +69,7 @@ export default function App() {
     bringlist: useCollection(store, 'bringlist'),
     polls: useCollection(store, 'polls'),
     todos: useCollection(store, 'todos'),
+    program: useCollection(store, 'program'),
   };
   const rsvps = store ? Object.fromEntries(data.rsvp.docs.map((d) => [d.id, d])) : null;
 
@@ -91,7 +92,7 @@ export default function App() {
       {plan ? (
         <PlanPage unlocked={Boolean(store)} onUnlock={unlock} onLock={lock} me={me} setMe={setMe} store={store} data={data} />
       ) : (
-        <InfoPage rsvps={rsvps} />
+        <InfoPage rsvps={rsvps} forslag={store ? data.program.docs : null} />
       )}
     </>
   );

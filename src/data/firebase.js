@@ -48,6 +48,7 @@ export function createFirebaseStore(space) {
       );
     },
     set: (col, id, data) => wrap(setDoc(ref(col, id), data)),
+    merge: (col, id, patch) => wrap(setDoc(ref(col, id), patch, { merge: true })),
     setField: (col, id, field, sub, value) =>
       wrap(setDoc(ref(col, id), { [field]: { [sub]: value === null ? deleteField() : value } }, { merge: true })),
     remove: (col, id) => wrap(deleteDoc(ref(col, id))),
