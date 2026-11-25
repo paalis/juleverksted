@@ -18,7 +18,7 @@ export async function applyWorstCase() {
   const { tilgang } = await import('../content.js');
   // Koden er bare kjent som hash, så testmodus bruker hashen direkte.
   const key = `juleverksted.lokal.${tilgang.kodeHash}`;
-  storeCode('PEPPERKAKE11');
+  storeCode('PREJULESANG');
 
   if (mode === 'tom') {
     localStorage.setItem(key, JSON.stringify({}));
