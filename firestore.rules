@@ -1,0 +1,71 @@
+rules_version = '2';
+
+// Juleverksted – sikkerhetsregler.
+//
+// Ingen innlogging. Alt ligger under spaces/{hash}, der {hash} er SHA-256 av tilgangskoden
+// gjestene taster inn. Den som kjenner koden, kan lese og skrive. Det er ikke mulig å liste
+// opp spaces, så koden fungerer som et felles passord. Alt annet er stengt.
+//
+// Publiser med:  firebase deploy --only firestore:rules
+// eller lim inn hele filen under Firestore → Regler i Firebase-konsollen.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function validSpace(space) {
+      return space.matches('^[0-9a-f]{64}$');
+    }
+    function validId(id) {
+      return id.matches('^[A-Za-z0-9_-]{1,64}$');
+    }
+    function str(v, min, max) {
+      return v is string && v.size() >= min && v.size() <= max;
+    }
+    function data() {
+      return request.resource.data;
+    }
+
+    // Påmelding: ett dokument per par (id = par-id fra content.js)
+    match /spaces/{space}/rsvp/{coupleId} {
+      allow get, list: if validSpace(space);
+      allow delete: if validSpace(space) && validId(coupleId);
+      allow create, update: if validSpace(space) && validId(coupleId)
+        && data().keys().hasOnly(['status', 'allergier', 'oppdatert'])
+        && data().status in ['kommer', 'kommer-ikke', 'vet-ikke']
+        && str(data().allergier, 0, 500)
+        && data().oppdatert is int;
+    }
+
+    // Hvem tar med hva
+    match /spaces/{space}/bringlist/{itemId} {
+      allow get, list: if validSpace(space);
+      allow delete: if validSpace(space) && validId(itemId);
+      allow create, update: if validSpace(space) && validId(itemId)
+        && data().keys().hasOnly(['tekst', 'tarMed', 'egen', 'opprettet'])
+        && str(data().tekst, 1, 120)
+        && str(data().tarMed, 0, 64)
+        && data().egen is bool
+        && data().opprettet is int;
+    }
+
+    // Avstemminger: ett dokument per avstemming, stemmer = { parId: valgId }
+    match /spaces/{space}/polls/{pollId} {
+      allow get, list: if validSpace(space);
+      allow delete: if validSpace(space) && validId(pollId);
+      allow create, update: if validSpace(space) && validId(pollId)
+        && data().keys().hasOnly(['stemmer'])
+        && data().stemmer is map
+        && data().stemmer.size() <= 12;
+    }
+
+    // Vertens huskeliste
+    match /spaces/{space}/todos/{todoId} {
+      allow get, list: if validSpace(space);
+      allow delete: if validSpace(space) && validId(todoId);
+      allow create, update: if validSpace(space) && validId(todoId)
+        && data().keys().hasOnly(['tekst', 'ferdig', 'opprettet'])
+        && str(data().tekst, 1, 200)
+        && data().ferdig is bool
+        && data().opprettet is int;
+    }
+  }
+}
