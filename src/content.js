@@ -30,7 +30,6 @@ export const praktisk = {
   // Om drikke. Vises øverst i «Praktisk».
   drikke: 'Det blir gløgg og rødvin, og noe alkoholfritt til sjåførene. Erfaringen tilsier at kransene blir penere for hvert glass, i hvert fall i våre egne øyne.',
   taMed: 'Bare dere selv og godt humør. Har dere krysset av for noe under «Hvem tar med hva», så ta med det også.',
-  kjaeledyr: 'Vi har ingen kjæledyr, så allergikere kan puste lettet ut.',
 };
 
 // Programmet er ikke spikret: gjestene foreslår og stemmer under Planlegging.
