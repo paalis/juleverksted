@@ -1060,3 +1060,32 @@ main { display: block; }
   .topbar__brand { font-size: 1.08rem; gap: .4rem; }
   .topbar nav a { padding-inline: .6rem; font-size: .9rem; }
 }
+
+/* ═════════ Billetten stablet: historien over hele bredden ═════════ */
+@media (min-width: 46em) {
+  .ticket { grid-template-columns: 1fr; }
+  .ticket__stub { display: block; text-align: center; padding: 2.25rem 2rem 1.75rem; }
+  .ticket__stub::after { left: 1.1rem; right: 1.1rem; top: auto; bottom: 0; border-right: 0; border-bottom: 2px dashed var(--line-strong); }
+  .ticket__stub::before { left: calc(var(--notch) * -1 - 1px); right: auto; top: auto; bottom: calc(var(--notch) * -1); clip-path: inset(0 0 0 50%); }
+  .ticket__body::before { left: auto; right: calc(var(--notch) * -1 - 1px); top: calc(var(--notch) * -1); bottom: auto; clip-path: inset(0 50% 0 0); }
+  .ticket__actions { justify-content: center; }
+  .ticket__body.facts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 2.5rem; padding: 1.75rem 2rem; }
+  .ticket__body .fact { padding: 0; border-bottom: 0; }
+}
+
+.tale { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem 1.25rem; margin: .75rem 0 .5rem; }
+.tale .ticket__tale { grid-column: 1 / -1; grid-row: 2; margin: .25rem auto 0; }
+.tale__side { display: flex; gap: 1.25rem; color: var(--berry); }
+.tale__side--l { justify-content: flex-end; }
+.tale__side--r { justify-content: flex-start; color: var(--gold); }
+.tale__side svg:nth-child(2) { color: var(--gold); }
+.tale__side--r svg:nth-child(2) { color: var(--berry); }
+@media (min-width: 46em) {
+  .tale { grid-template-columns: 5.5rem minmax(0, 1fr) 5.5rem; gap: 1.5rem; align-items: center; margin-top: 1.25rem; }
+  .tale .ticket__tale { grid-column: 2; grid-row: 1; margin: 0 auto; max-width: 38rem; }
+  .tale__side { flex-direction: column; align-items: center; gap: 2.25rem; }
+  .tale__side svg { width: 46px; height: 46px; }
+  .tale__side--l svg:first-child, .tale__side--r svg:last-child { transform: rotate(-6deg); }
+  .tale__side--l svg:last-child, .tale__side--r svg:first-child { transform: rotate(5deg); }
+}
+.wrap--ticket { max-width: calc(52rem + 2 * var(--gutter)); }
